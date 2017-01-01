@@ -1,0 +1,14 @@
+<div class="overlay" *ngIf="showModal">
+  <md-card class="modalDialog">
+    <md-toolbar color="primary">
+      {{title}}
+    </md-toolbar>
+    <md-card-content>
+      <br>{{message}}<br><br>
+    </md-card-content>
+    <md-card-actions class="center">
+      <button md-button (click)="emitValue(null)" color="primary">{{cancelText}}</button>
+      <button md-raised-button (click)="emitValue(value)" color="primary">{{okText}}</button>
+    </md-card-actions>
+  </md-card>
+</div>

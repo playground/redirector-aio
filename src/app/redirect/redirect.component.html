@@ -1,0 +1,68 @@
+<md-card class="redirectapp">
+  <md-toolbar color="primary">
+    Redirector
+    <div class="redirect-urls">
+      <label>Search: </label>
+      <input [(ngModel)]="query" (keyup)="search()">
+      <small>{{activeRedirects}} active & {{disabledRedirects}} disabled redirects</small>
+    </div>
+    <button md-fab class="fab-add" (click)="createRedirect()">
+      <md-icon>add</md-icon>
+    </button>
+  </md-toolbar>
+
+  <md-card-content>
+    <md-list>
+      <md-list-item>
+        <div class="list-item-header">
+          <ul class="filters">
+            <li>
+              <a [routerLink]="['/all']" [class.selected]="path === 'all'">All</a>
+            </li>
+            <li>
+              <a [routerLink]="['/active']" [class.selected]="path === 'active'">Active</a>
+            </li>
+            <li>
+              <a [routerLink]="['/disabled']" [class.selected]="path === 'disabled'">Disabled</a>
+            </li>
+          </ul>
+        </div>
+      </md-list-item>
+      <md-list-item *ngFor="let redirect of redirects">
+        <div class="list-item">
+          <md-checkbox color="primary" type="checkbox" [name]="'item'+index" [(ngModel)]="redirect.active" (click)="toggle(redirect)">
+            <span [class.inactive]="!redirect.active">{{redirect.ruleName}}</span>
+          </md-checkbox>
+
+          <span>
+           <button md-mini-fab (click)="confirmDelete(redirect)" color="primary">
+             <md-icon>delete_forever</md-icon>
+           </button>
+
+           <button md-mini-fab (click)="editRedirect(redirect)" color="primary"
+                   [disabled]="!redirect.active">
+             <md-icon>mode_edit</md-icon>
+           </button>
+         </span>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+
+</md-card>
+
+<app-modal [title]="'Confirm Delete'"
+           [message]="message"
+           [okText]="okText"
+           [value]="value"
+           (valueEmitted)="deleteRedirect($event)"
+           [showModal]="showModal">
+</app-modal>
+
+<app-redirect-edit [title]="title"
+           [message]="message"
+           [okText]="okText"
+           [redirect]="value"
+           (valueEmitted)="updateRedirect($event)"
+           [showModal]="showEdit">
+</app-redirect-edit>

@@ -1,0 +1,55 @@
+{
+  "name": "redirector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js --ignore 'lib/redirects.json' --exec babel-node --presets es2015,stage-3",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeff K. Lu",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheWeatherCompany/redirector"
+  },
+  "keywords": [
+    "redirect",
+    "301",
+    "server",
+    "http",
+    "angular",
+    "node"
+  ],
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "jsonfile": "^2.4.0",
+    "winston": "^2.3.0",
+    "winston-slack-transport": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-node-debug": "^2.0.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-3": "^6.11.0",
+    "babel-register": "^6.18.0",
+    "babel-tape-runner": "^2.0.1",
+    "colortape": "^0.1.1",
+    "eslint": "^3.9.0",
+    "eslint-config-google": "^0.7.0",
+    "faucet": "0.0.1",
+    "gulp": "^3.9.1",
+    "isparta": "^4.0.0",
+    "istanbul": "^0.4.5",
+    "nodemon": "^1.10.2",
+    "proxyquire": "^1.7.10",
+    "tap": "^7.1.2",
+    "tape": "^4.6.2"
+  }
+}

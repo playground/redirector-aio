@@ -1,0 +1,13 @@
+{
+  "port": 9006,
+  "redirects": {
+    "localhost": {
+      "host": "https://weather.com",
+      "code": 301
+    },
+    "*": {
+      "host": "http://www.google.com",
+      "code": 301
+    }
+  }
+}

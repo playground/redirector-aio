@@ -1,14 +1,31 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
+import { RedirectComponent } from './redirect/redirect.component';
+import { ModalComponent } from './modal/modal.component';
+import { RedirectEditComponent } from './redirect-edit/redirect-edit.component';
 
 describe('AppComponent', () => {
+  const routes: Routes = [
+    {path: ':status', component: RedirectComponent},
+    {path: '**', redirectTo: '/all'}
+  ]
+
   beforeEach(() => {
+
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
+      imports: [
+        RouterModule.forRoot(routes),
+        MaterialModule.forRoot()
+      ]
     });
     TestBed.compileComponents();
   });

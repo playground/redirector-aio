@@ -1,0 +1,36 @@
+<div class="overlay" *ngIf="showModal">
+  <md-card class="modalDialog">
+    <md-toolbar color="primary">
+      {{title}}
+    </md-toolbar>
+    <md-card-content>
+      <form #redirectForm="ngForm" (ngSubmit)="emitValue(redirect)">
+        <md-input class="full-width" placeholder="What needs to be redirected?"
+                  name="ruleName"
+                  [(ngModel)]="redirect.ruleName"
+                  (keyup.escape)="emitValue(null)"></md-input>
+        <md-input class="full-width" placeholder="Enter path of redirect"
+                  name="path"
+                  [(ngModel)]="redirect.path"
+                  (keyup.escape)="emitValue(null)"></md-input>
+        <md-input class="full-width" placeholder="Enter query parmas of redirect"
+                  name="query"
+                  [(ngModel)]="redirect.query"
+                  (keyup.escape)="emitValue(null)"></md-input>
+        <md-input class="full-width" placeholder="Enter redirect url"
+                  name="redirectUrl"
+                  [(ngModel)]="redirect.redirectUrl"
+                  (keyup.escape)="emitValue(null)"></md-input>
+        <md-input class="full-width" placeholder="Enter redirect code"
+                  name="redirectCode"
+                  [(ngModel)]="redirect.redirectCode"
+                  (keyup.escape)="emitValue(null)"></md-input>
+
+        <md-card-actions class="center">
+          <button md-button (click)="emitValue(null)" color="primary" type="button">{{cancelText}}</button>
+          <button md-raised-button (click)="emitValue(redirect)" color="primary" type="submit">{{okText}}</button>
+        </md-card-actions>
+      </form>
+    </md-card-content>
+  </md-card>
+</div>

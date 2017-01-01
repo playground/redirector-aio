@@ -1,0 +1,109 @@
+[
+  {
+    "active": true,
+    "redirectCode": 301,
+    "id": 0,
+    "ruleName": "Ad Choices 9899",
+    "path": "/adchoices.asp",
+    "query": "",
+    "redirectUrl": "/ad-choices"
+  },
+  {
+    "active": true,
+    "redirectCode": 301,
+    "id": 1,
+    "ruleName": "Full Screen Weather",
+    "path": "",
+    "query": "brand=wxmap",
+    "redirectUrl": "/fullscreenweather"
+  },
+  {
+    "ruleName": "Full Screen Weather auto/wxmap*",
+    "path": "/auto/wxmap*",
+    "query": "",
+    "active": true,
+    "redirectUrl": "/fullscreenweather",
+    "redirectCode": 301,
+    "id": 2
+  },
+  {
+    "active": true,
+    "redirectCode": "301",
+    "id": 3,
+    "ruleName": "Legal - Terms of Service",
+    "path": "/members/tos.asp",
+    "query": "",
+    "redirectUrl": "/legal",
+    "editing": false
+  },
+  {
+    "active": true,
+    "redirectCode": "301",
+    "id": 4,
+    "ruleName": "Legal - Ad Network",
+    "path": "/members/ad-network.asp",
+    "query": "",
+    "redirectUrl": "/members/ad-network",
+    "editing": false
+  },
+  {
+    "active": true,
+    "redirectCode": "301",
+    "id": 5,
+    "ruleName": "Legal - Ad Services",
+    "path": "/members/ad-services.asp",
+    "query": "",
+    "redirectUrl": "/members/ad-services"
+  },
+  {
+    "active": true,
+    "redirectCode": "301",
+    "ruleName": "WunderMap",
+    "path": "/micro/wundermap/",
+    "redirectUrl": "/wundermap",
+    "id": 6
+  },
+  {
+    "active": true,
+    "redirectCode": "301",
+    "ruleName": "About - Contact Us",
+    "path": "/about/contact.asp",
+    "redirectUrl": "/about/contact-us",
+    "id": 7
+  },
+  {
+    "ruleName": "task3 ",
+    "path": "path3",
+    "query": "",
+    "active": false,
+    "redirectUrl": "",
+    "redirectCode": "301",
+    "id": 9
+  },
+  {
+    "active": true,
+    "redirectCode": "301",
+    "ruleName": "Preparedness - Wildfire",
+    "path": "/prepare/wildfire.asp",
+    "redirectUrl": "/prepare/wildfire",
+    "id": 18
+  },
+  {
+    "ruleName": "task two $$$",
+    "path": "task two",
+    "query": "",
+    "active": false,
+    "redirectUrl": "",
+    "redirectCode": "301",
+    "id": 10
+  },
+  {
+    "ruleName": "task one",
+    "path": "task one",
+    "query": "",
+    "active": true,
+    "redirectUrl": "",
+    "redirectCode": "301",
+    "id": 11
+  }
+]

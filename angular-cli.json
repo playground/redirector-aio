@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.22-1",
+    "version": "1.0.0-beta.24",
     "name": "redirector-aio"
   },
   "apps": [
@@ -18,7 +18,8 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.css",
+        "angular-material.scss"
       ],
       "scripts": [],
       "environments": {
