@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
 import { RedirectEditComponent } from './redirect-edit.component';
@@ -15,7 +16,7 @@ describe('RedirectEditComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RedirectEditComponent ],
       imports: [
-        RouterModule,
+        FormsModule,
         MaterialModule
       ]
     })

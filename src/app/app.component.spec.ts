@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { MaterialModule } from '@angular/material';
+import { Routes, RouterModule, provideRoutes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { ModalComponent } from './modal/modal.component';
@@ -23,8 +23,10 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        RouterModule.forRoot(routes),
-        MaterialModule.forRoot()
+        RouterTestingModule
+      ],
+      providers: [
+        provideRoutes([{path: 'fakeRouteForTesting', redirectTo: 'fakeRouteForTesting', pathMatch:'full'}])
       ]
     });
     TestBed.compileComponents();
@@ -46,6 +48,8 @@ describe('AppComponent', () => {
     let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+    let el = compiled.querySelector('router-outlet');
+    console.log('$$$$$$$', el);
+    expect(el).toBeTruthy();
   }));
 });
