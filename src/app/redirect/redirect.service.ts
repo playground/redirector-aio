@@ -13,18 +13,20 @@ export class RedirectService {
   }
 
   getRedirects() {
-    return new Promise((resolve) => {
+    return Observable.create((subscriber) => {
       if(this.redirects.length === 0) {
         this.loadRedirects()
           .subscribe(redirects => {
-            console.log('redirects')
+            console.log('redirects', redirects)
             redirects.forEach((redirect) => {
               this.redirects.push(new Redirect(redirect));
             });
-            resolve(this.redirects);
+            subscriber.next(this.redirects);
+            subscriber.complete();
           });
       } else {
-        resolve(this.redirects);
+        subscriber.next(this.redirects);
+        subscriber.complete();
       }
     });
   }
@@ -55,7 +57,7 @@ export class RedirectService {
   }
 
   get(query = ''){
-    return new Promise(resolve => {
+    return Observable.create((subscriber) => {
       let data;
 
       if(query === 'active' || query === 'disabled') {
@@ -65,7 +67,8 @@ export class RedirectService {
         console.log('***', this.redirects)
         data = this.redirects;
       }
-      resolve(data)
+      subscriber.next(data);
+      subscriber.complete();
     });
   }
 

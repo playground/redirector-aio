@@ -61,8 +61,12 @@ export class RedirectComponent implements OnInit {
   }
 
   getRedirects(query = '') {
+    let redirects;
     return this.redirectService.get(query)
-      .then((redirects) => {
+      .subscribe((data) => {
+        redirects = data
+      }, (err) => {
+      }, () => {
         this.redirects = redirects;
         this.copy = this.redirects.slice();
         this.activeRedirects = this.redirects.filter((redirect) => redirect.active).length;
@@ -126,12 +130,16 @@ export class RedirectComponent implements OnInit {
   }
 
   ngOnInit() {
+    let data;
     this.route.params.subscribe((params) => {
       this.path = params['status'];
       this.redirectService.getRedirects()
-        .then((redirects) => {
+        .subscribe((redirects) => {
+        }, (err) => {
+          console.log(err);
+        }, () => {
           this.getRedirects(this.path);
-        })
+        });
     });
   }
 

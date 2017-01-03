@@ -11,10 +11,6 @@ import { ModalComponent } from './modal/modal.component';
 import { RedirectEditComponent } from './redirect-edit/redirect-edit.component';
 
 describe('AppComponent', () => {
-  const routes: Routes = [
-    {path: ':status', component: RedirectComponent},
-    {path: '**', redirectTo: '/all'}
-  ]
 
   beforeEach(() => {
 

@@ -7,8 +7,8 @@ describe('redirector-aio App', function() {
     page = new RedirectorAioPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display title with Redirector', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getLabelText()).toEqual('Search:');
   });
 });

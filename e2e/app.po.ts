@@ -5,7 +5,8 @@ export class RedirectorAioPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getLabelText() {
+    let el = element(by.css('.redirect-urls label'));
+    return el.getText();
   }
 }

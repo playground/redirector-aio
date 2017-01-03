@@ -9,13 +9,13 @@
     "redirectUrl": "/ad-choices"
   },
   {
-    "active": true,
-    "redirectCode": 301,
-    "id": 1,
     "ruleName": "Full Screen Weather",
     "path": "",
     "query": "brand=wxmap",
-    "redirectUrl": "/fullscreenweather"
+    "active": true,
+    "redirectUrl": "/fullscreenweather",
+    "redirectCode": 301,
+    "id": 1
   },
   {
     "ruleName": "Full Screen Weather auto/wxmap*",

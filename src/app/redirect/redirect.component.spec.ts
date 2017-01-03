@@ -2,7 +2,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { Routes, ActivatedRoute, RouterModule } from '@angular/router';
+import { Router, Routes, ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import {APP_BASE_HREF} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
@@ -14,22 +16,30 @@ import { RedirectService } from './redirect.service';
 describe('RedirectComponent', () => {
   let component: RedirectComponent;
   let fixture: ComponentFixture<RedirectComponent>;
-  let redirectServiceStub;
+  let redirectComponent;
   let redirectService;
   let de: DebugElement;
   let el: HTMLElement;
+  const routes: Routes = [
+    {path: ':status', component: RedirectComponent},
+    {path: '**', redirectTo: '/all'}
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RedirectComponent, ModalComponent, RedirectEditComponent ],
       imports: [
         FormsModule,
-        RouterModule,
+        RouterModule.forRoot(routes),
         MaterialModule.forRoot()
       ],
       providers: [
         RedirectService,
-        ActivatedRoute
+        {
+          provide: APP_BASE_HREF,
+          useValue: '/'
+        }
+
       ]
     })
     .compileComponents();
@@ -43,7 +53,7 @@ describe('RedirectComponent', () => {
     redirectService = TestBed.get(RedirectService);
 
     //  get the "welcome" element by CSS selector (e.g., by class name)
-    de = fixture.debugElement.query(By.css('.welcome'));
+    de = fixture.debugElement.query(By.css('.redirectapp'));
     el = de.nativeElement;
     fixture.detectChanges();
   });
@@ -51,4 +61,11 @@ describe('RedirectComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have Redirector', () => {
+    de = fixture.debugElement.query(By.css('md-toolbar-row'));
+    el = de.nativeElement;
+    fixture.detectChanges();
+    expect(el.textContent).toContain('Redirector');
+  })
 });
