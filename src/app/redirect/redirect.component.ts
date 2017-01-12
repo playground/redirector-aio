@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MdDialogRef, MdDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 import { RedirectService } from './redirect.service';
 import { Redirect } from "./redirect.model";
@@ -109,6 +109,10 @@ export class RedirectComponent implements OnInit {
           return filter === redirect.active ? Object.assign(this.redirectService.create(), redirect) : false;
         }
       });
+    if(this.redirects) {
+      this.activeRedirects = this.redirects.filter((redirect) => redirect.active).length;
+      this.disabledRedirects = this.redirects.filter((redirect) => !redirect.active).length;
+    }
   }
 
   confirmDelete(redirect) {
@@ -235,6 +239,9 @@ export class RedirectComponent implements OnInit {
     console.log('save all')
     this.redirectService.save(this.redirects)
       .subscribe((data) => {
+        }, (err) => {
+          console.log(err);
+        }, () => {
         console.log('redirects saved successfully.');
       });
   }
@@ -248,39 +255,7 @@ export class RedirectComponent implements OnInit {
     //this.cloneState();
   }
 
-  //cloneState() {
-  //  console.log('call select')
-  //  this.store.select('redirects').subscribe((state: IState) => {
-  //    console.log('statemachine', state);
-  //    if(state && state.present) {
-  //      let present = state.present;
-  //      this.redirects = present.map((redirect) => {
-  //        return Object.assign(this.redirectService.create(), redirect);
-  //      });
-  //    }
-  //  });
-  //}
-
   ngOnInit() {
-    //let redirects;
-    //this.redirectService.getRedirects()
-    //  .subscribe((data) => {
-    //    redirects = data;
-    //  }, (err) => {
-    //    console.log(err);
-    //  }, () => {
-    //    this.route.params.subscribe((params) => {
-    //      this.path = params['status'];
-    //        console.log('ngoninit', redirects);
-    //        const copy = redirects.map((redirect) => {
-    //          return Object.assign(this.redirectService.create(), redirect);
-    //        });
-    //        this.store.dispatch({
-    //          type: AppActions.INIT,
-    //          payload: copy
-    //        });
-    //    });
-    //  });
   }
 
 }

@@ -1,10 +1,10 @@
 <md-card class="redirectapp">
   <md-toolbar color="primary">
     Redirector
+    <div> - {{activeRedirects}} active & {{disabledRedirects}} disabled redirects</div>
     <div class="redirect-urls">
       <label>Search: </label>
       <input [(ngModel)]="query" (keyup)="search()">
-      <small>{{activeRedirects}} active & {{disabledRedirects}} disabled redirects</small>
     </div>
     <button md-fab class="fab-add" (click)="createRedirect()">
       <md-icon>add</md-icon>
@@ -40,9 +40,9 @@
       <md-list-item *ngFor="let redirect of redirects; let i = index">
         <div class="list-item" dnd-droppable dnd-sortable-container [sortableData]="redirects" (onDropSuccess)="reorderSuccess(redirect)" dnd-sortable [sortableIndex]="i">
           <md-checkbox color="primary" type="checkbox" [name]="'item'+index" [checked]="redirect.active" (click)="toggle(redirect)">
-            <span [ngClass]="(redirect.active ? '': 'inactive')"></span>
+            <span [ngClass]="(redirect.active ? '': 'inactive')">{{redirect.ruleName}}</span>
           </md-checkbox>
-          <span (dblclick)="editRedirect(redirect)">{{redirect.ruleName}} - {{redirect.path}}</span>
+          <span (dblclick)="editRedirect(redirect)">{{redirect.path}} - {{redirect.query}} - {{redirect.redirectUrl}} - {{redirect.redirectCode}}</span>
           <span>
            <button md-mini-fab (click)="confirmDelete(redirect)" color="primary">
              <md-icon>delete_forever</md-icon>

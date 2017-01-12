@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -9,9 +9,10 @@ import { AppComponent } from './app.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { ModalComponent } from './modal/modal.component';
 import { RedirectEditComponent } from './redirect-edit/redirect-edit.component';
+import { ToastService } from './toast/toast.service';
 
 describe('AppComponent', () => {
-
+  let position;
   beforeEach(() => {
 
     TestBed.configureTestingModule({
@@ -22,6 +23,7 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       providers: [
+        ToastService,
         provideRoutes([{path: 'fakeRouteForTesting', redirectTo: 'fakeRouteForTesting', pathMatch:'full'}])
       ]
     });
@@ -34,13 +36,8 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app works!'`, async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
+  it('should render title in a h1 tag', inject([ToastService], (toastService) => {
+    toastService.position$.subscribe((pos) => position = pos);
     let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     let compiled = fixture.debugElement.nativeElement;
