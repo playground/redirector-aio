@@ -40,6 +40,14 @@
     border-color: rgba(175, 47, 47, 0.2);
 }
 
+.filters li a.is-dirty {
+    cursor: pointer;
+}
+
+.filters li a.not-dirty {
+    color: rgba(175, 47, 47, 0.2);
+}
+
 .list-item {
     width: 100%
 }

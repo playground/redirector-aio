@@ -25,22 +25,34 @@
             <li>
               <a [routerLink]="['/disabled']" [class.selected]="path === 'disabled'">Disabled</a>
             </li>
+            <li>
+              <a [ngClass]="(isDirty ? 'is-dirty' : 'not-dirty')" (click)="!isDirty || stateMachine(appActions.UNDO)">Undo</a>
+            </li>
+            <li>
+              <a [ngClass]="(isRedoable ? 'is-dirty' : 'not-dirty')" (click)="!isRedoable || stateMachine(appActions.REDO)">Redo</a>
+            </li>
+            <li>
+              <a [ngClass]="(isDirty ? 'is-dirty' : 'not-dirty')" (click)="!isDirty && !currentStateSaved || saveAll()">Save</a>
+            </li>
           </ul>
         </div>
       </md-list-item>
-      <md-list-item *ngFor="let redirect of redirects">
-        <div class="list-item">
-          <md-checkbox color="primary" type="checkbox" [name]="'item'+index" [(ngModel)]="redirect.active" (click)="toggle(redirect)">
-            <span [class.inactive]="!redirect.active">{{redirect.ruleName}}</span>
+      <md-list-item *ngFor="let redirect of redirects; let i = index">
+        <div class="list-item" dnd-droppable dnd-sortable-container [sortableData]="redirects" (onDropSuccess)="reorderSuccess(redirect)" dnd-sortable [sortableIndex]="i">
+          <md-checkbox color="primary" type="checkbox" [name]="'item'+index" [checked]="redirect.active" (click)="toggle(redirect)">
+            <span [ngClass]="(redirect.active ? '': 'inactive')"></span>
           </md-checkbox>
-
+          <span (dblclick)="editRedirect(redirect)">{{redirect.ruleName}} - {{redirect.path}}</span>
           <span>
            <button md-mini-fab (click)="confirmDelete(redirect)" color="primary">
              <md-icon>delete_forever</md-icon>
            </button>
 
-           <button md-mini-fab (click)="editRedirect(redirect)" color="primary"
-                   [disabled]="!redirect.active">
+           <button
+             md-mini-fab
+             (mouseover)="editTooltips(redirect)"
+             (click)="editRedirect(redirect)" color="primary"
+             [disabled]="!redirect.active">
              <md-icon>mode_edit</md-icon>
            </button>
          </span>

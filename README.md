@@ -14,5 +14,12 @@ RedirectorUI manipulates redirects.json file that resides in Redirector which is
 When a redirect url is added or modified, redirects.json will be updated 
 
 ## Development server
-Run `npm start` for a dev server. Navigate to `http://localhost:9003/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. 
+    - Navigate to `http://localhost:9003/`. Add/Update/Delete url's to be directed.  The app will automatically reload if you change any of the source files.
+    - Navigate to `http://localhost:9006/original-url` to verify it's being redirected.
 
+## Unit test
+ng test
+
+## e2e test
+ng e2e

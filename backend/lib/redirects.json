@@ -27,23 +27,23 @@
     "id": 2
   },
   {
-    "active": true,
-    "redirectCode": "301",
-    "id": 3,
     "ruleName": "Legal - Terms of Service",
     "path": "/members/tos.asp",
     "query": "",
+    "active": true,
     "redirectUrl": "/legal",
+    "redirectCode": 301,
+    "id": 3,
     "editing": false
   },
   {
-    "active": true,
-    "redirectCode": "301",
-    "id": 4,
     "ruleName": "Legal - Ad Network",
     "path": "/members/ad-network.asp",
     "query": "",
+    "active": true,
     "redirectUrl": "/members/ad-network",
+    "redirectCode": 301,
+    "id": 4,
     "editing": false
   },
   {
@@ -64,20 +64,21 @@
     "id": 6
   },
   {
-    "active": true,
-    "redirectCode": "301",
     "ruleName": "About - Contact Us",
     "path": "/about/contact.asp",
+    "query": "",
+    "active": true,
     "redirectUrl": "/about/contact-us",
+    "redirectCode": "code",
     "id": 7
   },
   {
     "ruleName": "task3 ",
     "path": "path3",
     "query": "",
-    "active": false,
+    "active": true,
     "redirectUrl": "",
-    "redirectCode": "301",
+    "redirectCode": 303,
     "id": 9
   },
   {
@@ -103,7 +104,7 @@
     "query": "",
     "active": true,
     "redirectUrl": "",
-    "redirectCode": "301",
+    "redirectCode": 303,
     "id": 11
   }
 ]

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 import { Redirect } from './redirect.model';
@@ -13,6 +13,20 @@ export class RedirectService {
   }
 
   getRedirects() {
+    return Observable.create((subscriber) => {
+      this.loadRedirects()
+        .subscribe(redirects => {
+          console.log('redirects', redirects)
+          redirects.forEach((redirect) => {
+            this.redirects.push(new Redirect(redirect));
+          });
+          subscriber.next(this.redirects);
+          subscriber.complete();
+        });
+    });
+  }
+
+  getRedirects2() {
     return Observable.create((subscriber) => {
       if(this.redirects.length === 0) {
         this.loadRedirects()
@@ -74,6 +88,25 @@ export class RedirectService {
 
   create(options: Object = {}) {
     return new Redirect(options);
+  }
+
+  save(redirects) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    let url = `${environment.saveRedirects}`;
+    console.log('***', url);
+    return this.http.post(url, redirects, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
+  generateId() {
+    let newId = this.redirects.length;
+    let index = this.redirects.findIndex((redirect) => redirect.id === newId);
+    while(index >= 0) {
+      index = this.redirects.findIndex((redirect) => redirect.id === ++newId);
+    }
+    return newId;
   }
 
   add(data) {
