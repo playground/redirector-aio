@@ -6,29 +6,34 @@
     <md-card-content>
       <form #redirectForm="ngForm" (ngSubmit)="emitValue(redirect)">
         <md-input class="full-width" placeholder="What needs to be redirected?"
-                  name="ruleName"
-                  [(ngModel)]="redirect.ruleName"
-                  (keyup.escape)="emitValue(null)"></md-input>
+          name="ruleName"
+          [(ngModel)]="redirect.ruleName"
+          (keyup.escape)="emitValue(null)"></md-input>
         <md-input class="full-width" placeholder="Enter path of redirect"
-                  name="path"
-                  [(ngModel)]="redirect.path"
-                  (keyup.escape)="emitValue(null)"></md-input>
+          name="path"
+          [(ngModel)]="redirect.path"
+          (keyup.escape)="emitValue(null)"></md-input>
         <md-input class="full-width" placeholder="Enter query parmas of redirect"
-                  name="query"
-                  [(ngModel)]="redirect.query"
-                  (keyup.escape)="emitValue(null)"></md-input>
+          name="query"
+          [(ngModel)]="redirect.query"
+          (keyup.escape)="emitValue(null)"></md-input>
         <md-input class="full-width" placeholder="Enter redirect url"
-                  name="redirectUrl"
-                  [(ngModel)]="redirect.redirectUrl"
-                  (keyup.escape)="emitValue(null)"></md-input>
-        <md-input class="full-width" placeholder="Enter redirect code"
-                  name="redirectCode"
-                  [(ngModel)]="redirect.redirectCode"
-                  (keyup.escape)="emitValue(null)"></md-input>
+          name="redirectUrl"
+          [(ngModel)]="redirect.redirectUrl"
+          (keyup.escape)="emitValue(null)"></md-input>
+        <md-select placeholder="Enter redirect code"
+                   name="redirectCode"
+                   [(ngModel)]="redirect.redirectCode"
+                   (ngModelChange)="showToast($event)"
+                   ngModelOptions="{trackBy: '$value.id'}">
+          <md-option [value]="code" *ngFor="let code of codes" ngSelected="redirect.redirectCode === code">
+            {{code}}
+          </md-option>
+        </md-select>
 
         <md-card-actions class="center">
           <button md-button (click)="emitValue(null)" color="primary" type="button">{{cancelText}}</button>
-          <button md-raised-button (click)="emitValue(redirect)" color="primary" type="submit">{{okText}}</button>
+          <button md-raised-button color="primary" type="submit">{{okText}}</button>
         </md-card-actions>
       </form>
     </md-card-content>

@@ -18,6 +18,8 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
+        "../node_modules/ng2-toasty/style.css",
+        "../node_modules/ng2-dnd/style.css",
         "styles.css",
         "angular-material.scss"
       ],

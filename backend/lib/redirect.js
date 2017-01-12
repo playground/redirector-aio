@@ -72,6 +72,17 @@ export default function(port) {
       res.json(obj);
     });
   });
+  app.post('/redirects-save', function(req, res, next) {
+    let redirects = req.body;
+    let filename = `${__dirname}/redirects.json`;
+    jsonfile.writeFile(filename, redirects, function (err) {
+      if(err) {
+        return next(err);
+      } else {
+        res.send({data: redirect});
+      }
+    });
+  });
   app.post('/redirect-add', function(req, res, next) {
     let redirect = req.body;
     let json;
