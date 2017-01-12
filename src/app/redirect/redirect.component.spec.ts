@@ -7,6 +7,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {APP_BASE_HREF} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
+import { StoreModule } from '@ngrx/store';
+import { DndModule } from 'ng2-dnd';
+import { ToastyModule } from 'ng2-toasty';
+
+import { ToastService } from '../toast/toast.service';
+import { APP_REDUCERS } from '../reducers/reducers';
 
 import { RedirectComponent } from './redirect.component';
 import { ModalComponent } from '../modal/modal.component';
@@ -31,15 +37,18 @@ describe('RedirectComponent', () => {
       imports: [
         FormsModule,
         RouterModule.forRoot(routes),
-        MaterialModule.forRoot()
+        MaterialModule.forRoot(),
+        DndModule.forRoot(),
+        ToastyModule.forRoot(),
+        StoreModule.provideStore(APP_REDUCERS)
       ],
       providers: [
         RedirectService,
         {
           provide: APP_BASE_HREF,
           useValue: '/'
-        }
-
+        },
+        ToastService
       ]
     })
     .compileComponents();

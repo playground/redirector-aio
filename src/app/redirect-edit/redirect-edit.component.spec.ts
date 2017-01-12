@@ -5,8 +5,11 @@ import { DebugElement } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
+import { ToastyModule } from 'ng2-toasty';
+import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
 
 import { RedirectEditComponent } from './redirect-edit.component';
+import { ToastService } from '../toast/toast.service';
 
 describe('RedirectEditComponent', () => {
   let component: RedirectEditComponent;
@@ -15,9 +18,11 @@ describe('RedirectEditComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RedirectEditComponent ],
+      providers: [ToastService, ToastyService, ToastyConfig, ToastOptions],
       imports: [
         FormsModule,
-        MaterialModule
+        MaterialModule,
+        ToastyModule.forRoot()
       ]
     })
     .compileComponents();

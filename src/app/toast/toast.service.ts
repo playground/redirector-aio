@@ -44,6 +44,7 @@ export class ToastService {
 
   makeToast(opts) {
     console.log('new toast', opts)
+    //noinspection TypeScriptValidateTypes
     let toastOptions: ToastOptions = {
       title: opts.title ? opts.title : this.options.title,
       msg: opts.msg ? opts.msg : this.options.msg,
